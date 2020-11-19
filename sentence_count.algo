@@ -1,0 +1,38 @@
+ALGORITHM sentence_count
+VAR
+    str : STRING;
+    c : char;
+    i : INTEGER;
+    char_num : INTEGER = 0;
+    word_num : INTEGER = 1;
+    vowel_num : INTEGER 0 ;
+BEGIN
+    
+    Read(str);
+    str := ToUpper(str);
+    IF (str[str.length-1] == "." OR str.length>0) THEN
+        FOR i FROM 0 TO str.length-1 STEP 1  DO
+            c = str[i];
+            IF (c!= '' AND c!='.') THEN
+                char_num := char_num + 1;
+                IF (c = 'A' OR c = 'E' OR c = 'E' OR c = 'U') THEN
+                    vowel_num := vowel_num + 1;
+                END_IF
+            ELSE
+                word_num := word_num + 1;
+            END_IF
+        END_FOR
+    
+    
+    ELSE
+        Write("Invalid Sentence!")
+    END_IF
+    
+    Write("Number of characters: ");
+    Write(char_num);
+    Write("Number of numbers: ");
+    Write(vowel_num);
+    Write("Number of words: ");
+    Write(word_num);
+    
+END

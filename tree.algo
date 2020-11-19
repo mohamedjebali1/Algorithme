@@ -1,0 +1,74 @@
+
+BT :STRUCT
+        VAL : INTEGER; 
+        LC : ^BT; // a pointer to left child
+        RC : ^BT; // a pointer to right child
+    END_STRUCT
+
+FUNCTION nb_nodes(root : ^BT) : INTEGER
+BEGIN
+    IF (root = NULL) THEN
+        RETURN 0;
+    ELSE
+        RETURN 1 + nb_nodes(root^.LC) + nb_nodes(root^.RC);
+    END_IF
+END
+
+FUNCTION max(a,b : INTEGER) : INTEGER
+BEGIN
+    IF (a < b) THEN
+        RETURN b;
+    ELSE
+        RETURN a;
+    END_IF
+END
+
+FUNCTION height(root : ^BT) : INTEGER
+BEGIN
+    IF (root = NULL) THEN
+        RETURN 0;
+    ELSE
+        RETURN 1 + max(height(root^.LC),height(root^.RC));
+    END_IF
+END
+
+FUNCTION nb_leaves(root : ^BT) : INTEGER
+BEGIN
+    IF (root = NULL) THEN
+        RETURN 0;
+    ELSE_IF(root^.LC = NULL AND root^.RC = NULL)
+        RETURN 1;
+    ELSE
+        RETURN  nb_leaves(root^.LC) + nb_leaves(root^.RC);
+    END_IF
+END
+
+//4
+FUNCTION maximum(root : ^BT) : INTEGER
+BEGIN
+    IF (root <> NULL) THEN
+        IF (root^.LC = NULL AND root^.RC = NULL) THEN
+            RETURN root^.VAL;
+        ELSE_IF (root^.LC = NULL) THEN
+            RETURN max(root^.VAL,maximum(root^.RC));
+        ELSE_IF (root^.RC = NULL) THEN
+            RETURN max(root^.VAL,maximum(root^.LC));
+        ELSE
+            RETURN max(maximum(root^.LC),maximum(root^.RC));
+        END_IF
+    END_IF
+END
+
+
+FUNCTION full_BT(root : ^BT) : BOOLEAN
+BEGIN
+    IF (root <> NULL) THEN
+        IF (root^.LC = NULL AND root^.RC = NULL) THEN
+            RETURN TRUE;
+        ELSE_IF (root^.LC <> NULL AND root^.RC <> NULL) THEN
+            RETURN full_BT(root^.LC) AND full_BT(root^.RC);
+        ELSE
+            RETURN FALSE;
+        END_IF
+    END_IF
+END

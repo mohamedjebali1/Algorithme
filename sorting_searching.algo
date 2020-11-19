@@ -1,0 +1,22 @@
+
+PROCEDURE swap(VAR a : INTEGER , VAR b : INTEGER )
+VAR
+    tmp : INTEGER;
+BEGIN
+    tmp := a;
+    a := b;
+    b := tmp;
+END
+
+ALGORITHM insertion_sort
+VAR
+    tab : ARRAY_OF [20];
+BEGIN
+    FOR i FROM 0 TO tab.length-1 STEP 1  DO
+        j := i;
+        WHILE (j>0 AND tab[j-1] > tab[j]) DO
+            swap(tab[j-1], tab[j]);
+            j:= j-1;
+        END_WHILE
+    END_FOR
+END

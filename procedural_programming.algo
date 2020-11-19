@@ -1,0 +1,58 @@
+PROCEDURE dot_product(VAR ps : INTEGER, v1,v2  : ARRAY_OF INTEGER[] )
+VAR
+    n : INTEGER;
+BEGIN
+    n := v1.length;
+    ps := 0;
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        ps := ps + v1[i] * v2[i];
+    END_FOR
+    Write(ps)
+END
+
+FUNCTION dot_product(v1, v2 : ARRAY_OF INTEGER[]) : INTEGER
+VAR
+    ps : INTEGER;
+    n : INTEGER
+BEGIN
+    n := v1.length;
+    ps := 0;
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        ps := ps + v1[i] * v2[i];
+    END_FOR
+    RETURN ps; 
+END
+
+ALGORITHM algorithm_ortho_procedure
+VAR
+    base1 : ARRAY_OF INTEGER[][];
+    base2 : ARRAY_OF INTEGER[][];
+    dot_pr : INTEGER;
+BEGIN
+    FOR i FROM 0 TO base1.length-1 STEP step  DO
+        dot_product(dot_pr, base1[i], base2[i]);
+        IF (dot_pr = 0) THEN
+            Write ('Orthogonal Vectors');
+        ELSE
+            Write ('Vectors not Orthogonal');
+        END_IF
+    END_FOR
+END
+
+ALGORITHM algorithm_ortho_function
+VAR
+    base1 : ARRAY_OF INTEGER[][];
+    base2 : ARRAY_OF INTEGER[][];
+    dot_pr : INTEGER;
+BEGIN
+    FOR i FROM 0 TO base1.length-1 STEP step  DO
+        dot_product = dot_product(base1[i], base2[i]);
+        IF (dot_pr = 0) THEN
+            Write ('Orthogonal Vectors');
+        ELSE
+            Write ('Vectors not Orthogonal');
+        END_IF
+    END_FOR
+END

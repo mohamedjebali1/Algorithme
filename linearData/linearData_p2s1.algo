@@ -1,0 +1,40 @@
+ALGORITHM sum_overlap_elements
+VAR
+    set1 : ARRAY_OF INTEGER[4];
+    set2 : ARRAY_OF INTEGER[5];
+    i : INTEGER;
+    sum,s1,s2 : INTEGER :=0;
+    equal : BOOLEAN;
+BEGIN
+    set1 := {12,13,6,10};
+    set2 := {13,10,16,15};
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        equal := FALSE;
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set1[i] = set2[j]) THEN
+                equal := TRUE;
+            END_IF
+        END_FOR
+        IF (equal = TRUE) THEN
+                s1 := s1 + set1[i];
+            END_IF
+    END_FOR
+
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        equal := FALSE;
+        FOR j FROM 0 TO set1.length-1 STEP 1  DO
+            IF (set2[i] = set1[j]) THEN
+                equal := TRUE;
+            END_IF
+        END_FOR
+        IF (equal = TRUE ) THEN
+                s2 := s2 + set2[i];
+            END_IF
+    END_FOR
+
+    sum := s1 + s2;
+
+    Write(sum);
+
+END
